@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #ffd1dc, #ff6f91);
+  overflow: hidden;
+  transition: 0.6s ease;
+}
+
+/* 🌙 Dark mode */
+body.dark {
+  background: radial-gradient(circle at top, #1a1a2e, #16213e);
+}
+
+/* ✨ Soft glow */
+.glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: #ff4d6d;
+  filter: blur(150px);
+  opacity: 0.35;
+  z-index: 0;
+}
+
+/* 💌 Card */
+.card {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  width: 92%;
+  max-width: 380px;
+  padding: 30px 25px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+  animation: fadeIn 1.2s ease;
+}
+
+body.dark .card {
+  background: rgba(30, 30, 50, 0.9);
+  color: #fff;
+}
+
+/* 🌸 Image */
+.image-wrapper {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  padding: 5px;
+  background: linear-gradient(135deg, #ff4d6d, #ffafcc);
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* ✍️ Text */
+h1 {
+  margin: 10px 0;
+  color: #ff4d6d;
+  font-weight: 700;
+}
+
+body.dark h1 {
+  color: #ff9aa2;
+}
+
+.question {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 18px 0 25px;
+}
+
+/* 💖 Buttons */
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.buttons button {
+  padding: 14px 26px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#yesBtn {
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(255,77,109,0.5);
+}
+
+#yesBtn:hover {
+  transform: scale(1.07);
+}
+
+#noBtn {
+  background: #e0e0e0;
+}
+
+#message {
+  margin-top: 22px;
+  font-size: 15px;
+  color: #ff4d6d;
+}
+
+/* 🌙 Toggle */
+#modeToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* 💕 Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  animation: floatUp 6s linear forwards;
+  opacity: 0.9;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110vh) scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* ✨ Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
