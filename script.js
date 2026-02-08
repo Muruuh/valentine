@@ -4,88 +4,57 @@ const message = document.getElementById("message");
 const music = document.getElementById("bgMusic");
 const toggle = document.getElementById("modeToggle");
 
-const card = document.getElementById("mainCard");
-const finalScreen = document.getElementById("finalScreen");
-const slideImg = document.getElementById("slideImg");
-
-const slides = ["slide1.jpg", "slide2.jpg", "slide3.jpg"];
-let slideIndex = 0;
-
-const startTime = 93;
-const endTime = 126;
-const climaxTime = 160; // BEST PART 🔥
+const startTime = 93;   // 1:33
+const endTime = 126;    // 2:06
 
 let noCount = 0;
 
-/* 🎶 music start */
+/* 🎶 Music start on first click */
 document.body.addEventListener("click", () => {
   music.currentTime = startTime;
-  music.volume = 0;
   music.play();
-
-  let fade = setInterval(() => {
-    if (music.volume < 0.3) music.volume += 0.02;
-    else clearInterval(fade);
-  }, 200);
 }, { once: true });
 
+/* 🔁 Loop only selected part */
 music.addEventListener("timeupdate", () => {
-  if (music.currentTime >= endTime) music.currentTime = startTime;
+  if (music.currentTime >= endTime) {
+    music.currentTime = startTime;
+  }
 });
 
-/* 🙈 NO */
+/* 🙈 No button logic */
 noBtn.addEventListener("click", () => {
   noCount++;
   if (noCount === 1) {
-    message.innerText = "Нээрээ итгэлтэй юу? 🥺";
+    message.innerText = "Нээрээ итгэлтэй юу? 🥺 Зүрх жаахан өвдлөө...";
   } else {
     noBtn.style.transform =
       `translate(${Math.random()*200-100}px, ${Math.random()*200-100}px)`;
   }
 });
 
-/* 💖 YES – FINAL BOSS */
+/* 💖 Yes button */
 yesBtn.addEventListener("click", () => {
-  // music climax
-  music.currentTime = climaxTime;
-  music.volume = 0.6;
-
-  // fireworks hearts
-  for (let i = 0; i < 40; i++) {
-    setTimeout(createHeart, i * 80);
-  }
-
-  // switch screen
-  setTimeout(() => {
-    card.style.display = "none";
-    finalScreen.classList.remove("hidden");
-    startSlideshow();
-  }, 1200);
+  message.innerHTML = `
+    💖 Миний хамгийн их хүссэн хариу 💖<br>
+    Чамтай хамт байх мөч бүр<br>
+    хайраар дүүрэн байг ✨
+  `;
 });
 
-/* 💕 hearts */
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerText = "💖";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random() * 30 + 20 + "px";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 5000);
-}
-
-setInterval(createHeart, 700);
-
-/* 📸 slideshow */
-function startSlideshow() {
-  setInterval(() => {
-    slideIndex = (slideIndex + 1) % slides.length;
-    slideImg.src = slides[slideIndex];
-  }, 2500);
-}
-
-/* 🌙 dark mode */
+/* 🌙 Dark mode */
 toggle.addEventListener("click", () => {
   document.body.classList.toggle("dark");
   toggle.innerText = document.body.classList.contains("dark") ? "☀️" : "🌙";
 });
+
+/* 💕 Floating hearts */
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = Math.random() * 20 + 15 + "px";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}, 400);
